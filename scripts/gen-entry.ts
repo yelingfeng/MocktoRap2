@@ -91,7 +91,7 @@ export async function parseComponentExports() {
 
 async function writeEntry() {
   fs.writeFileSync(
-    `${CWD}/src/packages/my-lib.ts`,
+    `${CWD}/src/packages/mock2rap2.ts`,
     await parseComponentExports()
   )
   /**
@@ -99,7 +99,7 @@ async function writeEntry() {
    */
   spawn(
     /^win/.test(process.platform) ? 'eslint.cmd' : 'eslint',
-    ['./src/packages/my-lib.ts', '--fix']
+    ['./src/packages/mock2rap2.ts', '--fix']
   ).on('error', function (err) {
     throw err
   })

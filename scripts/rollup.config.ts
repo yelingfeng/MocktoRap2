@@ -12,7 +12,7 @@ const outPubOptions = {
   },
 }
 
-const input = 'src/packages/my-lib.ts'
+const input = 'src/packages/mock2rap2.ts'
 
 const getPlugins = () => [
   replace({
@@ -35,7 +35,7 @@ const getPlugins = () => [
   alias({
     entries: [
       {
-        find: /^(my-lib\/)(.*)/,
+        find: /^(mock2rap2\/)(.*)/,
         replacement: `${path.resolve(
           __dirname,
           '../src/packages'
@@ -57,7 +57,7 @@ const configs = []
 configs.push({
   input,
   output: {
-    file: `dist/es/my-lib.esm.js`,
+    file: `dist/es/mock2rap2.esm.js`,
     format: 'es',
     ...outPubOptions,
   },
@@ -71,9 +71,9 @@ configs.push({
 configs.push({
   input,
   output: {
-    file: `dist/lib/my-lib.umd.js`,
+    file: `dist/lib/mock2rap2.umd.js`,
     format: 'umd',
-    name: `my-lib`,
+    name: `mock2rap2`,
     ...outPubOptions,
   },
   plugins: getPlugins(),

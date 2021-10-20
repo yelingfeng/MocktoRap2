@@ -31,7 +31,7 @@ const genVueTypes = async () => {
 
   const entry = await parseComponentExports()
   const entrySourceFile = project.createSourceFile(
-    path.resolve(cwd(), 'src/packages/my-lib.ts'),
+    path.resolve(cwd(), 'src/packages/mock2rap2.ts'),
     entry,
     { overwrite: true }
   )

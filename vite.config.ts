@@ -5,7 +5,6 @@ import Components from 'vite-plugin-components'
 import Pages from 'vite-plugin-pages'
 import createSvgSpritePlugin from 'vite-plugin-svg-sprite'
 import Icons, { ViteIconsResolver } from 'vite-plugin-icons'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -42,7 +41,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      'my-lib/':
+      'mock2rap2/':
         process.env.NODE_ENV !== 'preview'
           ? `${path.resolve(__dirname, './src/packages')}/`
           : `${path.resolve(__dirname, './dist/es')}/`,

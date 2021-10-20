@@ -1,6 +1,6 @@
 {
-  "name": "my-lib",
-  "version": "0.0.0",
+  "name": "mock2rap2",
+  "version": "0.0.2",
   "scripts": {
     "dev": "vite --host",
     "serve": "vite preview",
@@ -25,9 +25,9 @@
     "dist",
     "src"
   ],
-  "main": "dist/lib/my-lib.umd.js",
-  "module": "dist/es/my-lib.esm.js",
-  "typings": "dist/types/my-lib.d.ts",
+  "main": "dist/lib/mock2rap2.umd.js",
+  "module": "dist/es/mock2rap2.esm.js",
+  "typings": "dist/types/mock2rap2.d.ts",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
@@ -110,5 +110,10 @@
     "vue-jest": "^5.0.0-alpha.7",
     "vue-router": "^4.0.6",
     "vue-tsc": "^0.0.24"
+  },
+  "dependencies": {
+    "clipboard": "^2.0.8",
+    "json-editor-vue": "^0.3.4",
+    "svelte-jsoneditor": "^0.3.3"
   }
 }

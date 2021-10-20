@@ -5,7 +5,7 @@ import './styles/code.css'
 import './styles/custom-blocks.css'
 import './styles/sidebar-links.css'
 import './styles/prism.css'
-import('../../../dist/es/my-lib.min.css')
+import('../../../dist/es/mock2rap2.min.css')
 
 import { Theme } from 'vitepress'
 import Layout from 'fisand-doc/dist/client/theme-default/Layout.vue'

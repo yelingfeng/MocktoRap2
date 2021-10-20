@@ -4,7 +4,7 @@ heroImage: /banner.png
 heroBanner: /banner.png
 heroAlt: 
 heroSub: 'seed'
-heroText: My UI library
+heroText: MocktoRap2 library
 tagline: 我的组件库简介
 
 actionText: 开始使用

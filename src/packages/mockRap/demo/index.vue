@@ -1,12 +1,12 @@
 <template>
   <div class="mylib-nav">
     <p class="home" @click="$router.push('/')">
-      <mdi:home />
+      <mylib-icon name="home" size="lg"></mylib-icon>
     </p>
-    <p class="name">Button</p>
+    <p class="name">MockRap</p>
     <p class="name-zh"><del>组件中文名称</del></p>
   </div>
-  <div class="mylib-example button">
+  <div class="mylib-example mock-rap">
     <section
       v-for="(demo, index) in demos"
       :key="index"
@@ -32,7 +32,7 @@ import { createDemoModule } from '../../utils/index'
 const demos = import.meta.globEager('./demo*.vue')
 
 export default createDemoModule(
-  'Button',
+  'MockRap',
   Object.entries(demos).map((demo) => demo[1].default)
 )
 </script>

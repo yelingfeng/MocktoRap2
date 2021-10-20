@@ -1,17 +1,15 @@
-<template>
-  <MockRap :opt="opt" />
-</template>
-<script lang="ts">
+<script lang="tsx">
 import MockRap from 'mock2rap2/mockRap/index.vue'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
+  title: '基本',
   name: 'MockRapDemo',
   components: {
     MockRap,
   },
   setup() {
-    const opt: any = {
+    const opt = {
       status: 200,
       message: '查询成功',
       data: null,
@@ -66,7 +64,9 @@ export default defineComponent({
       total: 10,
       api_name: null,
     }
-    return { opt }
+    return () => {
+      return <MockRap options={opt} />
+    }
   },
 })
 </script>

@@ -14,7 +14,7 @@
     "declarationDir": "dist/types",
     "outDir": "dist",
     "paths": {
-      "my-lib/*": [
+      "mock2rap2/*": [
         "./src/packages/*"
       ],
       "dist/*": [

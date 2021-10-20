@@ -4,8 +4,8 @@ heroImage: /banner.png
 heroBanner: /banner.png
 heroAlt: 
 heroSub: 'seed'
-heroText: My UI library
-tagline: my lib description
+heroText: Mock2Rap library
+tagline: Mock2Rap description
 
 actionText: GetStarted
 actionLink: /en-US/components/

@@ -26,3 +26,8 @@ declare module '@docsearch/css' {
   const css: string
   export default css
 }
+
+declare module '@json-editor-vue' {
+  function JsonEditorVue<T = any>(props: T): void
+  export default JsonEditorVue
+}

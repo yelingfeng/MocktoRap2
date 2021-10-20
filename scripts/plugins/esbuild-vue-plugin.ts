@@ -63,14 +63,17 @@ export default (): Plugin => {
         }
       )
       /**
-       * replace my-lib
+       * replace mock2rap2
        */
-      build.onResolve({ filter: /^my-lib\/.*/ }, (args) => {
-        return {
-          path: args.path.replace('my-lib/', '../'),
-          external: true,
+      build.onResolve(
+        { filter: /^mock2rap2\/.*/ },
+        (args) => {
+          return {
+            path: args.path.replace('mock2rap2/', '../'),
+            external: true,
+          }
         }
-      })
+      )
 
       build.onLoad(
         { filter: /\.vue$/, namespace: 'vue' },

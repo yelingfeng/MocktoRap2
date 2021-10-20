@@ -31,12 +31,12 @@ const enComponentDocs = componentDocs.map((item) => ({
   link: '/en-US/components/' + item.link,
 }))
 
-const REPO_BASE_URL = '/vuecomponent-seed/'
+const REPO_BASE_URL = '/MocktoRap2/'
 
 module.exports = {
   base: process.env.VERCEL_BUILD ? '/' : REPO_BASE_URL,
-  title: 'vuecomponent-seed',
-  description: 'vuecomponent-seed doc',
+  title: 'MocktoRap2',
+  description: 'MocktoRap2 doc',
   head: [
     [
       'link',
@@ -73,7 +73,7 @@ module.exports = {
   lang: 'zh-CN',
   themeConfig: {
     i18n: true,
-    repo: 'https://github.com/zouhangwithsweet/vuecomponent-seed', // replace the repo link
+    repo: 'https://github.com/yelingfeng/MocktoRap2', // replace the repo link
     docsBranch: 'master',
     editLinks: true,
     editLinkText: '为此文档提供修改建议',
@@ -89,10 +89,6 @@ module.exports = {
           link: '/zh-CN/components/',
         },
         {
-          text: '快速开始',
-          link: '/zh-CN/components/quick-start',
-        },
-        {
           text: '组件',
           children: zhComponentDocs,
         },
@@ -101,10 +97,6 @@ module.exports = {
         {
           text: 'Changelog',
           link: '/en-US/components/',
-        },
-        {
-          text: 'QuickStart',
-          link: '/en-US/components/quick-start',
         },
         {
           text: 'COMPONENTS',
