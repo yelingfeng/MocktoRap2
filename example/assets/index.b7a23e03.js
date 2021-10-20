@@ -1,15 +1,14 @@
-<script lang="tsx">
-import MockRap from 'mock2rap2/mockRap/index.vue'
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  title: '基本',
+import { _ as s } from './index.dbc8a31d.js'
+import {
+  d as a,
+  o as t,
+  c as e,
+} from './vendor.ffd617a9.js'
+var d = a({
   name: 'MockRapDemo',
-  components: {
-    MockRap,
-  },
-  setup() {
-    const opt = {
+  components: { MockRap: s },
+  setup: () => ({
+    opt: {
       status: 200,
       message: '查询成功',
       data: null,
@@ -63,10 +62,11 @@ export default defineComponent({
       ],
       total: 10,
       api_name: null,
-    }
-    return () => {
-      return <MockRap opt={opt} />
-    }
-  },
+    },
+  }),
 })
-</script>
+d.render = function (a, d, n, u, r, o) {
+  const m = s
+  return t(), e(m, { opt: a.opt }, null, 8, ['opt'])
+}
+export default d

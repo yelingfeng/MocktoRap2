@@ -3,5 +3,6 @@
   "semi": false,
   "printWidth": 60,
   "tabWidth": 2,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "endOfLine": "auto"
 }

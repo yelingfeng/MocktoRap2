@@ -6,7 +6,8 @@ import Pages from 'vite-plugin-pages'
 import createSvgSpritePlugin from 'vite-plugin-svg-sprite'
 import Icons, { ViteIconsResolver } from 'vite-plugin-icons'
 // https://vitejs.dev/config/
-export default defineConfig({
+
+export const config = {
   build: {
     outDir: 'example',
   },
@@ -48,4 +49,6 @@ export default defineConfig({
       'dist/': `${path.resolve(__dirname, './dist/es')}/`,
     },
   },
-})
+}
+
+export default defineConfig(config)

@@ -27,6 +27,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: docs/.vitepress/dist
+          FOLDER: example
           GIT_CONFIG_NAME: MocktoRap2
           COMMIT_MESSAGE: website deploy
