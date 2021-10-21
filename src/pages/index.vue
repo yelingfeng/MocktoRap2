@@ -49,7 +49,6 @@ export default defineComponent({
           status: 1,
         },
         {
-          order: 'desc',
           id: 70011,
           name: '境外在线用户态势展示分析',
           userId: 0,
