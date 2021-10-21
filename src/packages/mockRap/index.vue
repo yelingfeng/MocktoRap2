@@ -70,11 +70,11 @@
           content-style="padding: 24px;"
           bordered
         >
-          <json-viewer
-            :value="jsonData"
-            :expand-depth="3"
-            copyable
-            sort
+          <n-input
+            v-model:value="jsonData"
+            type="textarea"
+            :rows="20"
+            placeholder="请复制JSON数据"
           />
         </n-layout-sider>
         <n-layout
@@ -113,7 +113,7 @@ export default defineComponent({
   setup(props) {
     const sourceData = ref<any>(props.opt)
     const transData = ref<any>({})
-    const jsonData = cloneDeep(sourceData.value)
+    const jsonData = ref('')
 
     const formRef = ref<any>(null)
     const message = useMessage()
@@ -166,8 +166,10 @@ export default defineComponent({
     const transClick = () => {
       formRef.value.validate((errors) => {
         if (!errors) {
+          const json = eval('(' + jsonData.value + ')')
+          // console.log(json)
           transData.value = transformMock(
-            jsonData,
+            json,
             intefaceForm.value
           )
         } else {
