@@ -1,4 +1,4 @@
-import { _ as e } from './index.dbc8a31d.js'
+import { _ as e } from './index.78b9260d.js'
 import {
   d as t,
   o as s,
@@ -6,10 +6,10 @@ import {
   j as n,
   F as l,
   l as o,
-  r as d,
-  t as m,
+  r as m,
+  t as d,
   m as r,
-} from './vendor.ffd617a9.js'
+} from './vendor.d4e4b9b2.js'
 var u = t({
   title: '基本',
   name: 'MockRapDemo',
@@ -94,10 +94,10 @@ const x = { class: 'mylib-nav' },
     [n('del', null, '组件中文名称')],
     -1
   ),
-  f = { class: 'mylib-example mock-rap' },
-  y = { class: 'mylib-example-content' }
+  y = { class: 'mylib-example mock-rap' },
+  f = { class: 'mylib-example-content' }
 b.render = function (e, t, u, i, c, p) {
-  const b = d('mylib-icon')
+  const b = m('mylib-icon')
   return (
     s(),
     a(
@@ -117,7 +117,7 @@ b.render = function (e, t, u, i, c, p) {
           v,
           I,
         ]),
-        n('div', f, [
+        n('div', y, [
           (s(!0),
           a(
             l,
@@ -137,7 +137,7 @@ b.render = function (e, t, u, i, c, p) {
                       'div',
                       {
                         class: 'mylib-example-title',
-                        textContent: m(e.title),
+                        textContent: d(e.title),
                       },
                       null,
                       8,
@@ -147,13 +147,13 @@ b.render = function (e, t, u, i, c, p) {
                       'div',
                       {
                         class: 'mylib-example-describe',
-                        textContent: m(e.describe),
+                        textContent: d(e.describe),
                       },
                       null,
                       8,
                       ['textContent']
                     ),
-                    n('div', y, [(s(), a(r(e)))]),
+                    n('div', f, [(s(), a(r(e)))]),
                   ]
                 )
               )

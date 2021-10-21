@@ -13,29 +13,29 @@ import {
   g as c,
   h as u,
   i as l,
-} from './vendor.ffd617a9.js'
-let f
-const h = {},
+} from './vendor.d4e4b9b2.js'
+let h
+const f = {},
   _ = function (e, r) {
     if (!r) return e()
-    if (void 0 === f) {
+    if (void 0 === h) {
       const e = document.createElement('link').relList
-      f =
+      h =
         e && e.supports && e.supports('modulepreload')
           ? 'modulepreload'
           : 'preload'
     }
     return Promise.all(
       r.map((e) => {
-        if (e in h) return
-        h[e] = !0
+        if (e in f) return
+        f[e] = !0
         const r = e.endsWith('.css'),
           n = r ? '[rel="stylesheet"]' : ''
         if (document.querySelector(`link[href="${e}"]${n}`))
           return
         const s = document.createElement('link')
         return (
-          (s.rel = r ? 'stylesheet' : f),
+          (s.rel = r ? 'stylesheet' : h),
           r || ((s.as = 'script'), (s.crossOrigin = '')),
           (s.href = e),
           document.head.appendChild(s),
@@ -55,12 +55,12 @@ const h = {},
       path: '/mockrap/demo',
       component: () =>
         _(
-          () => import('./index.ac8270a4.js'),
+          () => import('./index.5b720c64.js'),
           [
-            './assets/index.ac8270a4.js',
-            './assets/index.dbc8a31d.js',
+            './assets/index.5b720c64.js',
+            './assets/index.78b9260d.js',
             './assets/index.09a2d1c9.css',
-            './assets/vendor.ffd617a9.js',
+            './assets/vendor.d4e4b9b2.js',
             './assets/vendor.0cf337ad.css',
           ]
         ),
@@ -71,12 +71,12 @@ const h = {},
       path: '/',
       component: () =>
         _(
-          () => import('./index.b7a23e03.js'),
+          () => import('./index.03716927.js'),
           [
-            './assets/index.b7a23e03.js',
-            './assets/index.dbc8a31d.js',
+            './assets/index.03716927.js',
+            './assets/index.78b9260d.js',
             './assets/index.09a2d1c9.css',
-            './assets/vendor.ffd617a9.js',
+            './assets/vendor.d4e4b9b2.js',
             './assets/vendor.0cf337ad.css',
           ]
         ),
