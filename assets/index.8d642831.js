@@ -1,15 +1,15 @@
-import { _ as e } from './index.78b9260d.js'
+import { _ as e } from './index.08935470.js'
 import {
   d as t,
   o as s,
   c as a,
-  j as n,
+  a as n,
   F as l,
-  l as o,
+  s as o,
   r as m,
   t as d,
-  m as r,
-} from './vendor.d4e4b9b2.js'
+  v as r,
+} from './vendor.ba751c96.js'
 var u = t({
   title: '基本',
   name: 'MockRapDemo',
@@ -86,8 +86,8 @@ var c,
     ((c = 'MockRap'),
     (p = Object.entries(i).map((e) => e[1].default)),
     t({ name: `${c}-demo`, setup: () => ({ demos: p }) }))
-const x = { class: 'mylib-nav' },
-  v = n('p', { class: 'name' }, 'MockRap', -1),
+const v = { class: 'mylib-nav' },
+  x = n('p', { class: 'name' }, 'MockRap', -1),
   I = n(
     'p',
     { class: 'name-zh' },
@@ -104,7 +104,7 @@ b.render = function (e, t, u, i, c, p) {
       l,
       null,
       [
-        n('div', x, [
+        n('div', v, [
           n(
             'p',
             {
@@ -114,7 +114,7 @@ b.render = function (e, t, u, i, c, p) {
             },
             [n(b, { name: 'home', size: 'lg' })]
           ),
-          v,
+          x,
           I,
         ]),
         n('div', y, [
