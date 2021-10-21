@@ -1,10 +1,10 @@
-import { _ as s } from './index.dbc8a31d.js'
+import { _ as s } from './index.78b9260d.js'
 import {
-  d as a,
-  o as t,
+  d as t,
+  o as a,
   c as e,
-} from './vendor.ffd617a9.js'
-var d = a({
+} from './vendor.d4e4b9b2.js'
+var n = t({
   name: 'MockRapDemo',
   components: { MockRap: s },
   setup: () => ({
@@ -46,7 +46,6 @@ var d = a({
           status: 1,
         },
         {
-          order: 'desc',
           id: 70011,
           name: '境外在线用户态势展示分析',
           userId: 0,
@@ -65,8 +64,8 @@ var d = a({
     },
   }),
 })
-d.render = function (a, d, n, u, r, o) {
+n.render = function (t, n, d, u, r, o) {
   const m = s
-  return t(), e(m, { opt: a.opt }, null, 8, ['opt'])
+  return a(), e(m, { opt: t.opt }, null, 8, ['opt'])
 }
-export default d
+export default n
