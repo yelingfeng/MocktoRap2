@@ -6,30 +6,7 @@ import {
 } from '../utils'
 import { reduce, random } from 'lodash-es'
 
-type ScopeType = 'response' | 'request'
-
-type BaseType = 'String' | 'Number' | 'Object' | 'Array'
-
-/**
- * rap 接口 response/request 类型
- */
-interface RapPropsType {
-  scope: ScopeType
-  id: number
-  type: BaseType
-  name: string
-  value: string
-  rule?: string | number
-  description?: string
-  parentId?: number
-  priority?: number
-  pos?: number
-  required?: boolean
-  interfaceId: number
-  creatorId: number
-  moduleId: number
-  repositoryId: number
-}
+import type { RapPropsType, ItfType } from './type'
 // 随机id
 const getRandomId = () => {
   const id = `${random(10, 30)}${random(10, 50)}00${random(
@@ -159,9 +136,9 @@ const renderProps = ({
     priority,
     required: false,
     creatorId,
-    moduleId,
-    repositoryId,
-    interfaceId,
+    // moduleId,
+    // repositoryId,
+    // interfaceId,
   }
   return jsontemp
 }
@@ -223,25 +200,29 @@ const _transInterfaceJson = ({
     priority: 1,
     status: 200,
     creatorId,
-    moduleId,
-    repositoryId,
+    // moduleId,
+    // repositoryId,
   }
   return itf
 }
 
 /**
  * 转换mock数据
- * @param opt
+ * @param jsonSource 数据json源
+ * @param icfg 接口信息
  */
-export const transformMock = (opt: any) => {
+export const transformMock = (
+  jsonSource: any,
+  icfg: ItfType
+) => {
   const itf = _transInterfaceJson({
-    name: '任务列表',
-    url: '/ysp_task/{uid}',
-    method: 'GET',
-    bodyOption: 'FORM_DATA',
-    description: '示例接口描述',
+    name: icfg.name,
+    url: icfg.url,
+    method: icfg.method,
+    bodyOption: icfg.bodyOption,
+    description: icfg.desc,
   })
-  const properties = _transProperties(opt)
+  const properties = _transProperties(jsonSource)
   return {
     itf,
     properties,

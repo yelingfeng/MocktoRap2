@@ -1,5 +1,7 @@
 <template>
-  <router-view />
+  <n-message-provider>
+    <router-view />
+  </n-message-provider>
 </template>
 
 <script lang="ts">
@@ -17,6 +19,11 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
 }
 </style>

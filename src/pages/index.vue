@@ -1,5 +1,8 @@
 <template>
-  <MockRap :opt="opt" />
+  <div>
+    <h1>Mock to Rap2</h1>
+    <MockRap :opt="opt" />
+  </div>
 </template>
 <script lang="ts">
 import MockRap from 'mock2rap2/mockRap/index.vue'
@@ -14,56 +17,51 @@ export default defineComponent({
     const opt: any = {
       status: 200,
       message: '查询成功',
-      data: null,
-      rows: [
+      data: [
         {
           id: 70001,
-          name: '综合态势分析',
-          userId: 0,
-          status: 1,
+          dim: '中国',
+          cnt: 100476592,
+          rank: 1,
         },
         {
           id: 70002,
-          name: '实时在线用户态势分析',
-          userId: 0,
-          status: 1,
+          dim: '美国',
+          cnt: 3371933,
+          rank: 2,
         },
         {
           id: 70003,
-          parentId: null,
-          name: '省外在线用户态势分析',
-          userId: 0,
-          status: 1,
+          dim: '香港',
+          cnt: 3247929,
+          rank: 3,
         },
         {
           id: 70008,
-          parentId: null,
-          name: '境外在线用户态势分析',
-          userId: 0,
-          status: 1,
+          dim: '未知',
+          cnt: 2533189,
+          rank: 4,
         },
         {
           id: 70010,
-          name: '重点地区在线用户态势展示分析',
-          userId: 0,
-          status: 1,
+          dim: '缅甸',
+          cnt: 2130736,
+          rank: 5,
         },
         {
           id: 70011,
-          name: '境外在线用户态势展示分析',
-          userId: 0,
-          status: 1,
+          dim: '印度',
+          cnt: 1867044,
+          rank: 6,
         },
         {
           id: 70009,
-          parentId: null,
-          name: '移动上网态势分析',
-          userId: 0,
-          status: 1,
+          dim: '尼日利亚',
+          cnt: 1463565,
+          rank: 7,
         },
       ],
       total: 10,
-      api_name: null,
     }
     return { opt }
   },

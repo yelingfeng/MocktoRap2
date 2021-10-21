@@ -15,14 +15,26 @@ import {
   NLayoutHeader,
   NLayoutContent,
   NLayoutSider,
+  NInput,
+  NSelect,
+  NForm,
+  NFormItem,
+  NMessageProvider,
+  useMessage,
 } from 'naive-ui'
 const naive = create({
   components: [
     NButton,
+    NInput,
+    NSelect,
+    NForm,
+    NFormItem,
     NLayout,
     NLayoutHeader,
     NLayoutContent,
     NLayoutSider,
+    useMessage,
+    NMessageProvider,
   ],
 })
 

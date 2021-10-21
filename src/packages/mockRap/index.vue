@@ -2,19 +2,63 @@
   <div class="box">
     <n-layout style="height: 600px">
       <n-layout-header
-        style="height: 64px; padding: 24px"
+        style="height: 100px; padding: 5px"
         bordered
-        >Mock to Rap2
-        <n-button
-          size="small"
-          type="primary"
-          @click="transClick"
-          >转换</n-button
+      >
+        <n-form
+          ref="formRef"
+          inline
+          :label-width="100"
+          :model="intefaceForm"
+          :rules="rules"
+          :size="size"
         >
+          <n-form-item label="接口名称" path="name">
+            <n-input
+              v-model:value="intefaceForm.name"
+              placeholder="请输入接口名称"
+            />
+          </n-form-item>
+          <n-form-item label="接口URL" path="url">
+            <n-input
+              v-model:value="intefaceForm.url"
+              placeholder="请输入URL"
+            />
+          </n-form-item>
+          <n-form-item label="接口类型" path="method">
+            <n-select
+              v-model:value="intefaceForm.method"
+              :options="options"
+            />
+          </n-form-item>
+          <n-form-item
+            label="接口BodyOption"
+            path="bodyOption"
+          >
+            <n-input
+              v-model:value="intefaceForm.bodyOption"
+              placeholder="请输入接口BodyOption"
+            />
+          </n-form-item>
+          <n-form-item label="接口备注" path="desc">
+            <n-input
+              v-model:value="intefaceForm.desc"
+              placeholder="desc"
+            />
+          </n-form-item>
+          <n-form-item>
+            <n-button
+              size="small"
+              type="primary"
+              @click="transClick"
+              >转换</n-button
+            >
+          </n-form-item>
+        </n-form>
       </n-layout-header>
       <n-layout
         position="absolute"
-        style="top: 64px"
+        style="top: 100px"
         has-sider
       >
         <n-layout-sider
@@ -52,7 +96,9 @@
 <script lang="ts">
 import { defineComponent, ref, PropType } from 'vue'
 import { transformMock } from './src/transform'
+import type { ItfType } from './src/type'
 import { cloneDeep } from 'lodash-es'
+import { useMessage } from 'naive-ui'
 type Recordable<T = any> = {
   [x: string]: T
 }
@@ -68,13 +114,77 @@ export default defineComponent({
     const sourceData = ref<any>(props.opt)
     const transData = ref<any>({})
     const jsonData = cloneDeep(sourceData.value)
+
+    const formRef = ref<any>(null)
+    const message = useMessage()
+    const size = ref('medium')
+
+    const options = [
+      {
+        label: 'POST',
+        value: 'POST',
+      },
+      {
+        label: 'GET',
+        value: 'GET',
+      },
+      {
+        label: 'DELETE',
+        value: 'DELETE',
+      },
+      {
+        label: 'PUT',
+        value: 'PUT',
+      },
+    ]
+
+    const intefaceForm = ref<ItfType>({
+      name: '',
+      url: '',
+      method: 'GET',
+      bodyOption: '',
+      desc: '',
+    })
+    const rules = {
+      name: {
+        required: true,
+        message: '请输入接口名',
+        trigger: 'blur',
+      },
+      url: {
+        required: true,
+        message: '请输入接口URL',
+        trigger: ['input', 'blur'],
+      },
+      method: {
+        required: true,
+        message: '请输入接口method',
+        trigger: ['input'],
+      },
+    }
+
     const transClick = () => {
-      transData.value = transformMock(jsonData)
+      formRef.value.validate((errors) => {
+        if (!errors) {
+          transData.value = transformMock(
+            jsonData,
+            intefaceForm.value
+          )
+        } else {
+          console.log(errors)
+          message.error('Invalid')
+        }
+      })
     }
     return {
+      size,
+      formRef,
+      rules,
+      options,
       jsonData,
       transClick,
       transData,
+      intefaceForm,
     }
   },
 })
