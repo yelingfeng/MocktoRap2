@@ -15,7 +15,7 @@
     "gen": "esno ./scripts/gen-component.ts --name",
     "gen-entry": "esno ./scripts/gen-entry.ts",
     "test": "jest --coverage",
-    "cz": "git commit",
+    "commit": "git commit",
     "preview": "esno ./scripts/preview.ts",
     "release": "esno ./scripts/release.ts"
   },
