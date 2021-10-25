@@ -1,15 +1,15 @@
-import { _ as e } from './index.08935470.js'
+import { _ as e } from './index.e5d51d87.js'
 import {
   d as t,
-  o as s,
-  c as a,
-  a as n,
-  F as l,
-  s as o,
-  r as m,
-  t as d,
-  v as r,
-} from './vendor.ba751c96.js'
+  r as s,
+  o as a,
+  c as n,
+  a as l,
+  F as o,
+  g as d,
+  t as m,
+  h as r,
+} from './vendor.4b684a34.js'
 var u = t({
   title: '基本',
   name: 'MockRapDemo',
@@ -86,74 +86,74 @@ var c,
     ((c = 'MockRap'),
     (p = Object.entries(i).map((e) => e[1].default)),
     t({ name: `${c}-demo`, setup: () => ({ demos: p }) }))
-const v = { class: 'mylib-nav' },
-  x = n('p', { class: 'name' }, 'MockRap', -1),
-  I = n(
+const x = { class: 'mylib-nav' },
+  v = l('p', { class: 'name' }, 'MockRap', -1),
+  I = l(
     'p',
     { class: 'name-zh' },
-    [n('del', null, '组件中文名称')],
+    [l('del', null, '组件中文名称')],
     -1
   ),
   y = { class: 'mylib-example mock-rap' },
   f = { class: 'mylib-example-content' }
 b.render = function (e, t, u, i, c, p) {
-  const b = m('mylib-icon')
+  const b = s('mylib-icon')
   return (
-    s(),
-    a(
-      l,
+    a(),
+    n(
+      o,
       null,
       [
-        n('div', v, [
-          n(
+        l('div', x, [
+          l(
             'p',
             {
               class: 'home',
               onClick:
                 t[1] || (t[1] = (t) => e.$router.push('/')),
             },
-            [n(b, { name: 'home', size: 'lg' })]
+            [l(b, { name: 'home', size: 'lg' })]
           ),
-          x,
+          v,
           I,
         ]),
-        n('div', y, [
-          (s(!0),
-          a(
-            l,
+        l('div', y, [
+          (a(!0),
+          n(
+            o,
             null,
-            o(
+            d(
               e.demos,
               (e, t) => (
-                s(),
-                a(
+                a(),
+                n(
                   'section',
                   {
                     key: t,
                     class: 'mylib-example-section',
                   },
                   [
-                    n(
+                    l(
                       'div',
                       {
                         class: 'mylib-example-title',
-                        textContent: d(e.title),
+                        textContent: m(e.title),
                       },
                       null,
                       8,
                       ['textContent']
                     ),
-                    n(
+                    l(
                       'div',
                       {
                         class: 'mylib-example-describe',
-                        textContent: d(e.describe),
+                        textContent: m(e.describe),
                       },
                       null,
                       8,
                       ['textContent']
                     ),
-                    n('div', f, [(s(), a(r(e)))]),
+                    l('div', f, [(a(), n(r(e)))]),
                   ]
                 )
               )
