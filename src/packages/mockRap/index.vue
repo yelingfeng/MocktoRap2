@@ -1,123 +1,163 @@
 <template>
   <div class="box">
-    <n-layout style="height: 600px">
-      <n-layout-header
-        style="height: 100px; padding: 5px"
-        bordered
-      >
-        <n-form
-          ref="formRef"
-          inline
-          :label-width="100"
-          :model="intefaceForm"
-          :rules="rules"
-          :size="size"
-        >
-          <n-form-item label="接口名称" path="name">
-            <n-input
-              v-model:value="intefaceForm.name"
-              placeholder="请输入接口名称"
-            />
-          </n-form-item>
-          <n-form-item label="接口URL" path="url">
-            <n-input
-              v-model:value="intefaceForm.url"
-              placeholder="请输入URL"
-            />
-          </n-form-item>
-          <n-form-item label="接口类型" path="method">
-            <n-select
-              v-model:value="intefaceForm.method"
-              :options="options"
-            />
-          </n-form-item>
-          <n-form-item
-            label="接口BodyOption"
-            path="bodyOption"
-          >
-            <n-input
-              v-model:value="intefaceForm.bodyOption"
-              placeholder="请输入接口BodyOption"
-            />
-          </n-form-item>
-          <n-form-item label="接口备注" path="desc">
-            <n-input
-              v-model:value="intefaceForm.desc"
-              placeholder="desc"
-            />
-          </n-form-item>
-          <n-form-item>
-            <n-button
-              size="small"
-              type="primary"
-              @click="transClick"
-              >转换</n-button
+    <n-grid :cols="24" :x-gap="2" responsive="screen">
+      <n-grid-item :span="8">
+        <div class="box-left">
+          <n-card content-style="min-height: 400px;">
+            <n-divider title-placement="left"
+              >Request</n-divider
             >
-          </n-form-item>
-        </n-form>
-      </n-layout-header>
-      <n-layout
-        position="absolute"
-        style="top: 100px"
-        has-sider
-      >
-        <n-layout-sider
-          :native-scrollbar="false"
-          collapse-mode="width"
-          :collapsed-width="300"
-          :width="500"
-          show-trigger="arrow-circle"
-          content-style="padding: 24px;"
-          bordered
-        >
-          <n-input
-            v-model:value="jsonData"
-            type="textarea"
-            :rows="20"
-            placeholder="请复制JSON数据"
-          />
-        </n-layout-sider>
-        <n-layout
-          content-style="padding: 24px;"
-          :native-scrollbar="false"
-        >
-          <json-viewer
-            :value="transData"
-            :expand-depth="3"
-            copyable
-            sort
-          />
-        </n-layout>
-      </n-layout>
-    </n-layout>
+            <n-input
+              v-model:value="jsonReq"
+              type="textarea"
+              :rows="10"
+              placeholder=""
+            />
+            <n-divider title-placement="left"
+              >Response</n-divider
+            >
+            <Vue3JsonEditor
+              v-model="jsonResp"
+              :show-btns="showBtn"
+              :expanded-on-start="expandedOntart"
+              :mode="mode"
+              lang="zh"
+              @json-change="onJsonRespChange"
+            ></Vue3JsonEditor>
+          </n-card>
+        </div>
+      </n-grid-item>
+      <n-grid-item :span="6">
+        <div class="box-center">
+          <n-card title="接口相关参数">
+            <n-form
+              ref="formRef"
+              :label-width="100"
+              :model="intefaceForm"
+              :rules="rules"
+              size="medium"
+            >
+              <n-form-item label="接口名称" path="name">
+                <n-input
+                  v-model:value="intefaceForm.name"
+                  placeholder="请输入接口名称"
+                />
+              </n-form-item>
+              <n-form-item label="接口URL" path="url">
+                <n-input
+                  v-model:value="intefaceForm.url"
+                  placeholder="请输入URL"
+                />
+              </n-form-item>
+              <n-form-item label="接口类型" path="method">
+                <n-select
+                  v-model:value="intefaceForm.method"
+                  :options="options"
+                />
+              </n-form-item>
+              <n-form-item
+                label="接口BodyOption"
+                path="bodyOption"
+              >
+                <n-input
+                  v-model:value="intefaceForm.bodyOption"
+                  placeholder="请输入接口BodyOption"
+                />
+              </n-form-item>
+              <n-form-item label="接口备注" path="desc">
+                <n-input
+                  v-model:value="intefaceForm.desc"
+                  placeholder="备注信息"
+                />
+              </n-form-item>
+            </n-form>
+            <div
+              style="display: flex; justify-content: center"
+            >
+              <n-button type="primary" @click="transClick"
+                >转换</n-button
+              >
+            </div>
+          </n-card>
+        </div>
+      </n-grid-item>
+      <n-grid-item :span="8">
+        <div class="box-right">
+          <n-card
+            title="Rap2Json"
+            content-style="min-height: 400px;height:400px;"
+          >
+            <json-viewer
+              :value="transData"
+              :expand-depth="3"
+              copyable
+              sort
+            />
+          </n-card>
+        </div>
+      </n-grid-item>
+    </n-grid>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from 'vue'
+import {
+  defineComponent,
+  ref,
+  PropType,
+  reactive,
+  toRefs,
+  onMounted,
+} from 'vue'
 import { transformMock } from './src/transform'
 import type { ItfType } from './src/type'
-import { cloneDeep } from 'lodash-es'
+import { cloneDeep, isString } from 'lodash-es'
 import { useMessage } from 'naive-ui'
+import { Vue3JsonEditor } from 'vue3-json-editor'
 type Recordable<T = any> = {
   [x: string]: T
 }
 export default defineComponent({
   name: 'MockRap',
+  components: {
+    Vue3JsonEditor,
+  },
   props: {
-    opt: {
+    resp: {
+      type: Object as PropType<Recordable>,
+      default: () => ({}),
+    },
+    req: {
       type: Object as PropType<Recordable>,
       default: () => ({}),
     },
   },
   setup(props) {
-    const sourceData = ref<any>(props.opt)
+    const reqData = ref<any>(props.req)
+    const respData = ref<any>(props.resp)
     const transData = ref<any>({})
     const jsonData = ref('')
 
     const formRef = ref<any>(null)
     const message = useMessage()
-    const size = ref('medium')
+
+    const edtorProps = reactive({
+      jsonResp: {},
+      jsonReq: {},
+      showBtn: false,
+      expandedOntart: true,
+      mode: 'text',
+    })
+    edtorProps.jsonReq = JSON.stringify(reqData.value)
+    edtorProps.jsonResp = respData.value
+    // console.log(edtorProps)
+
+    const onJsonReqChange = (val) => {
+      edtorProps.jsonReq = val
+    }
+    const onJsonRespChange = (val) => {
+      edtorProps.jsonResp = val
+    }
 
     const options = [
       {
@@ -166,20 +206,52 @@ export default defineComponent({
     const transClick = () => {
       formRef.value.validate((errors) => {
         if (!errors) {
-          const json = eval('(' + jsonData.value + ')')
+          let reqJson
+          let respJson
+          if (
+            edtorProps.jsonResp &&
+            isString(edtorProps.jsonResp)
+          ) {
+            try {
+              respJson = eval(
+                '(' + edtorProps.jsonResp + ')'
+              )
+            } catch (e) {
+              console.log(e)
+              message.error('格式不正确')
+            }
+          } else {
+            respJson = edtorProps.jsonResp
+          }
+
+          if (
+            edtorProps.jsonReq &&
+            isString(edtorProps.jsonReq)
+          ) {
+            try {
+              reqJson = eval('(' + edtorProps.jsonReq + ')')
+            } catch (e) {
+              console.log(e)
+              message.error('格式不正确')
+            }
+          } else {
+            reqJson = edtorProps.jsonReq
+          }
+
+          // const json =
           // console.log(json)
           transData.value = transformMock(
-            json,
+            reqJson,
+            respJson,
             intefaceForm.value
           )
         } else {
           console.log(errors)
-          message.error('Invalid')
+          message.error('先输入接口信息')
         }
       })
     }
     return {
-      size,
       formRef,
       rules,
       options,
@@ -187,14 +259,33 @@ export default defineComponent({
       transClick,
       transData,
       intefaceForm,
+      onJsonReqChange,
+      onJsonRespChange,
+      ...toRefs(edtorProps),
     }
   },
 })
 </script>
 <style>
 .box {
+  width: 100%;
+  height: 100%;
   text-align: left;
-  width: 1200px;
-  margin: 20px auto;
+}
+
+.box-left,
+.box-center,
+.box-right {
+  padding: 20px;
+}
+
+.jsoneditor-vue .jsoneditor-outer {
+  min-height: 300px;
+}
+.ace-jsoneditor.ace_editor {
+  height: 300px;
+}
+textarea.jsoneditor-text {
+  height: 300px;
 }
 </style>

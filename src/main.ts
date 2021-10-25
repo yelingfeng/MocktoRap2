@@ -6,37 +6,7 @@ import {
 import routes from 'virtual:generated-pages'
 import JsonViewer from 'vue3-json-viewer'
 import App from './App.vue'
-import {
-  // create naive ui
-  create,
-  // component
-  NButton,
-  NLayout,
-  NLayoutHeader,
-  NLayoutContent,
-  NLayoutSider,
-  NInput,
-  NSelect,
-  NForm,
-  NFormItem,
-  NMessageProvider,
-  useMessage,
-} from 'naive-ui'
-const naive = create({
-  components: [
-    NButton,
-    NInput,
-    NSelect,
-    NForm,
-    NFormItem,
-    NLayout,
-    NLayoutHeader,
-    NLayoutContent,
-    NLayoutSider,
-    useMessage,
-    NMessageProvider,
-  ],
-})
+import naive from 'naive-ui'
 
 const router = createRouter({
   history: createWebHashHistory(),

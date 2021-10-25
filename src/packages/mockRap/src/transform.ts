@@ -74,6 +74,7 @@ const getArrayChildProps = (
         name: key,
         rule: '',
         pid,
+        scope: 'response',
         value,
       }
       result.push(renderProps(_prop))
@@ -115,6 +116,7 @@ const _transformValue = (value, pid) => {
 // 基础转换
 const renderProps = ({
   id,
+  scope,
   type,
   name,
   rule,
@@ -125,7 +127,7 @@ const renderProps = ({
 }) => {
   const jsontemp: RapPropsType = {
     id,
-    scope: 'response',
+    scope,
     type,
     pos: 2,
     name,
@@ -136,30 +138,49 @@ const renderProps = ({
     priority,
     required: false,
     creatorId,
-    // moduleId,
-    // repositoryId,
-    // interfaceId,
+    moduleId,
+    repositoryId,
+    interfaceId,
   }
   return jsontemp
 }
 
 /**
  * 转props属性json
- * @param opt
+ * @param respSource
+ * @param reqSource
  * @returns
  */
-export const _transProperties = (opt) => {
+export const _transProperties = (respSource, reqSource) => {
   const result: any = []
-  Object.entries(opt).map(([key, value]) => {
+  const pid = -1
+  Object.entries(reqSource).map(([key, value]) => {
+    console.log(key, value)
+    if (key) {
+      const _type = _transformType(value)
+      const it = renderProps({
+        id: getRandomId(),
+        type: _type,
+        name: key,
+        rule: '',
+        pid,
+        scope: 'request',
+        value,
+      })
+      result.push(it)
+    }
+  })
+
+  Object.entries(respSource).map(([key, value]) => {
     // console.log(`key:${key}`)
     const _type = _transformType(value)
-    const pid = -1
     const obj = {
       id: getRandomId(),
       type: _type,
       name: key,
       rule: '',
       pid,
+      scope: 'response',
       value,
     }
     // 数组添加子属性
@@ -200,19 +221,21 @@ const _transInterfaceJson = ({
     priority: 1,
     status: 200,
     creatorId,
-    // moduleId,
-    // repositoryId,
+    moduleId,
+    repositoryId,
   }
   return itf
 }
 
 /**
  * 转换mock数据
- * @param jsonSource 数据json源
+ * @param reqSource request 源
+ * @param respSource resp 源
  * @param icfg 接口信息
  */
 export const transformMock = (
-  jsonSource: any,
+  reqSource: any,
+  respSource: any,
   icfg: ItfType
 ) => {
   const itf = _transInterfaceJson({
@@ -222,7 +245,8 @@ export const transformMock = (
     bodyOption: icfg.bodyOption,
     description: icfg.desc,
   })
-  const properties = _transProperties(jsonSource)
+  console.log(reqSource)
+  const properties = _transProperties(respSource, reqSource)
   return {
     itf,
     properties,

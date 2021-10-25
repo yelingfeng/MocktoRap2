@@ -2,9 +2,16 @@
 
 convert mockjs into RAP2 import backup JSON
 
-## Use
 
-```
+### Screenshot
+
+Mock2Rap2
+![image](exapmle/mock2rap.gif)
+
+ImportRAP2
+![image](exapmle/importRap2.gif)
+
+## Use
 
 ## Thanks
 template by vuecomponent-seed
