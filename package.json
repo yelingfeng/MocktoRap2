@@ -5,7 +5,7 @@
     "dev": "vite --host",
     "serve": "vite preview",
     "build": "rimraf example && yarn run build:example",
-    "build:example": "vue-tsc --noEmit && vite build --base=./",
+    "build:example": "vite build --base=./",
     "docs:dev": "esno scripts/gen-docs.ts && esno ./scripts/dev-docs.ts",
     "docs:build": "esno scripts/gen-docs.ts && fisandoc build docs",
     "docs:serve": "fisandoc serve docs",
