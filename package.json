@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "vite --host",
     "serve": "vite preview",
-    "build": "rimraf example && yarn run build:example",
-    "build:example": "vite build --base=./",
+    "build": "rimraf dist && yarn run build:dist",
+    "build:dist": "vite build --base=./",
     "docs:dev": "esno scripts/gen-docs.ts && esno ./scripts/dev-docs.ts",
     "docs:build": "esno scripts/gen-docs.ts && fisandoc build docs",
     "docs:serve": "fisandoc serve docs",
@@ -123,7 +123,6 @@
     "lodash-es": "^4.17.21",
     "naive-ui": "^2.19.11",
     "vfonts": "^0.1.0",
-    "vue3-json-editor": "^1.1.3",
     "vue3-json-viewer": "^1.0.4"
   }
 }

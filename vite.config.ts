@@ -1,6 +1,7 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vuejsx from '@vitejs/plugin-vue-jsx'
 import Components from 'vite-plugin-components'
 import Pages from 'vite-plugin-pages'
 import createSvgSpritePlugin from 'vite-plugin-svg-sprite'
@@ -9,10 +10,11 @@ import Icons, { ViteIconsResolver } from 'vite-plugin-icons'
 
 export const config = {
   build: {
-    outDir: 'example',
+    outDir: 'dist',
   },
   plugins: [
     vue(),
+    vuejsx(),
     createSvgSpritePlugin(),
     Pages({
       pagesDir: [
@@ -27,7 +29,7 @@ export const config = {
         '*/test/*.vue',
         '*/demo/demo[0-9].vue',
       ],
-      extensions: ['vue'],
+      extensions: ['vue', 'ts', 'js'],
     }),
     Components({
       dirs: ['src/packages'],

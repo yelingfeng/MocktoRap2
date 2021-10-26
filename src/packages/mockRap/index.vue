@@ -3,32 +3,6 @@
     <n-grid :cols="24" :x-gap="2" responsive="screen">
       <n-grid-item :span="8">
         <div class="box-left">
-          <n-card content-style="min-height: 400px;">
-            <n-divider title-placement="left"
-              >Request</n-divider
-            >
-            <n-input
-              v-model:value="jsonReq"
-              type="textarea"
-              :rows="10"
-              placeholder=""
-            />
-            <n-divider title-placement="left"
-              >Response</n-divider
-            >
-            <Vue3JsonEditor
-              v-model="jsonResp"
-              :show-btns="showBtn"
-              :expanded-on-start="expandedOntart"
-              :mode="mode"
-              lang="zh"
-              @json-change="onJsonRespChange"
-            ></Vue3JsonEditor>
-          </n-card>
-        </div>
-      </n-grid-item>
-      <n-grid-item :span="6">
-        <div class="box-center">
           <n-card title="接口相关参数">
             <n-form
               ref="formRef"
@@ -82,6 +56,31 @@
         </div>
       </n-grid-item>
       <n-grid-item :span="8">
+        <div class="box-center">
+          <n-card content-style="min-height: 400px;">
+            <n-divider title-placement="left"
+              >Request</n-divider
+            >
+            <n-input
+              v-model:value="jsonReq"
+              type="textarea"
+              :rows="10"
+              placeholder=""
+            />
+            <n-divider title-placement="left"
+              >Response</n-divider
+            >
+            <Vue3JsonEditor
+              v-model="jsonResp"
+              :show-btns="showBtn"
+              :mode="mode"
+              lang="zh"
+              @json-change="onJsonRespChange"
+            ></Vue3JsonEditor>
+          </n-card>
+        </div>
+      </n-grid-item>
+      <n-grid-item :span="8">
         <div class="box-right">
           <n-card
             title="Rap2Json"
@@ -111,9 +110,9 @@ import {
 } from 'vue'
 import { transformMock } from './src/transform'
 import type { ItfType } from './src/type'
-import { cloneDeep, isString } from 'lodash-es'
+import { isString } from 'lodash-es'
 import { useMessage } from 'naive-ui'
-import { Vue3JsonEditor } from 'vue3-json-editor'
+import Vue3JsonEditor from './editor/index.vue'
 type Recordable<T = any> = {
   [x: string]: T
 }
@@ -145,11 +144,9 @@ export default defineComponent({
       jsonResp: {},
       jsonReq: {},
       showBtn: false,
-      expandedOntart: true,
       mode: 'text',
     })
-    edtorProps.jsonReq = JSON.stringify(reqData.value)
-    edtorProps.jsonResp = respData.value
+
     // console.log(edtorProps)
 
     const onJsonReqChange = (val) => {
@@ -158,6 +155,10 @@ export default defineComponent({
     const onJsonRespChange = (val) => {
       edtorProps.jsonResp = val
     }
+    onMounted(() => {
+      edtorProps.jsonReq = JSON.stringify(reqData.value)
+      edtorProps.jsonResp = respData.value
+    })
 
     const options = [
       {
@@ -279,9 +280,6 @@ export default defineComponent({
   padding: 20px;
 }
 
-.jsoneditor-vue .jsoneditor-outer {
-  min-height: 300px;
-}
 .ace-jsoneditor.ace_editor {
   height: 300px;
 }

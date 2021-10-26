@@ -27,7 +27,11 @@ declare module '@docsearch/css' {
   export default css
 }
 
-declare module '@json-editor-vue' {
-  function JsonEditorVue<T = any>(props: T): void
-  export default JsonEditorVue
+declare module '@JsonEditor' {
+  function JsonEditor<T = any>(props: T): void
+  export default JsonEditor
+}
+
+interface Window {
+  JSONEditor: any //注意这里如果不写any那么用window.jim是可以的，但是用window.jim.hu 就会报错
 }
