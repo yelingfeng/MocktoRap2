@@ -106,11 +106,11 @@ import {
   PropType,
   reactive,
   toRefs,
-  onMounted,
+  onMounted
 } from 'vue'
 import { transformMock } from './src/transform'
 import type { ItfType } from './src/type'
-import { isString } from 'lodash-es'
+import { isString, cloneDeep } from 'lodash-es'
 import { useMessage } from 'naive-ui'
 import Vue3JsonEditor from './editor/index.vue'
 type Recordable<T = any> = {
@@ -119,17 +119,17 @@ type Recordable<T = any> = {
 export default defineComponent({
   name: 'MockRap',
   components: {
-    Vue3JsonEditor,
+    Vue3JsonEditor
   },
   props: {
     resp: {
       type: Object as PropType<Recordable>,
-      default: () => ({}),
+      default: () => ({})
     },
     req: {
       type: Object as PropType<Recordable>,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   setup(props) {
     const reqData = ref<any>(props.req)
@@ -144,7 +144,7 @@ export default defineComponent({
       jsonResp: {},
       jsonReq: {},
       showBtn: false,
-      mode: 'text',
+      mode: 'text'
     })
 
     // console.log(edtorProps)
@@ -163,20 +163,20 @@ export default defineComponent({
     const options = [
       {
         label: 'POST',
-        value: 'POST',
+        value: 'POST'
       },
       {
         label: 'GET',
-        value: 'GET',
+        value: 'GET'
       },
       {
         label: 'DELETE',
-        value: 'DELETE',
+        value: 'DELETE'
       },
       {
         label: 'PUT',
-        value: 'PUT',
-      },
+        value: 'PUT'
+      }
     ]
 
     const intefaceForm = ref<ItfType>({
@@ -184,24 +184,24 @@ export default defineComponent({
       url: '',
       method: 'GET',
       bodyOption: '',
-      desc: '',
+      desc: ''
     })
     const rules = {
       name: {
         required: true,
         message: '请输入接口名',
-        trigger: 'blur',
+        trigger: 'blur'
       },
       url: {
         required: true,
         message: '请输入接口URL',
-        trigger: ['input', 'blur'],
+        trigger: ['input', 'blur']
       },
       method: {
         required: true,
         message: '请输入接口method',
-        trigger: ['input'],
-      },
+        trigger: ['input']
+      }
     }
 
     const transClick = () => {
@@ -242,8 +242,8 @@ export default defineComponent({
           // const json =
           // console.log(json)
           transData.value = transformMock(
-            reqJson,
-            respJson,
+            cloneDeep(reqJson),
+            cloneDeep(respJson),
             intefaceForm.value
           )
         } else {
@@ -262,9 +262,9 @@ export default defineComponent({
       intefaceForm,
       onJsonReqChange,
       onJsonRespChange,
-      ...toRefs(edtorProps),
+      ...toRefs(edtorProps)
     }
-  },
+  }
 })
 </script>
 <style>
