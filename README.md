@@ -4,10 +4,13 @@ convert mockjs into RAP2 import backup JSON
 
 [在线预览online](https://yelingfeng.github.io/MocktoRap2/)
 
-> 快速、高效、创建RAP2接口 
+## Feature
+- :rocket:  快速创建RAP2接口 
+- :airplane: 支持在线编辑JSON
+- :helicopter: 支持mockjs规则和纯json数组格式
 
 
-### Screenshot
+## Screenshot
 
 Mock2Rap2
 ![](screenshot/mock2rap.gif)
@@ -16,16 +19,10 @@ ImportRAP2
 ![](screenshot/importRap2.gif)
 
 
-## Thanks
-template by vuecomponent-seed
-[vuecomponent-seed](https://github.com/zouhangwithsweet/vuecomponent-seed) 
 
+## Example
 
-## example
-
-### request
-
-直接对象即可
+### 1. Request
 
 ```js
  {
@@ -37,7 +34,7 @@ template by vuecomponent-seed
   }
 ```
 
-### response
+### 2. Response
 1. mock格式
 ```js
 {
@@ -157,3 +154,8 @@ template by vuecomponent-seed
   }
 
 ```
+
+
+## Thanks
+template by vuecomponent-seed
+[vuecomponent-seed](https://github.com/zouhangwithsweet/vuecomponent-seed) 
