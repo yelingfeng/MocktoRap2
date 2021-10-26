@@ -1,1 +1,0 @@
-import{_ as o}from"./index.f1881e96.js";export{_ as MockRap,_ as default}from"./index.f1881e96.js";import"./transform.0c15a121.js";import"./utils.c9a3879e.js";import"./vendor.7f3024dd.js";import"./index.51739821.js";o.install=s=>{s.component(o.name,o)};
