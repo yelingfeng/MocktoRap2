@@ -12,12 +12,7 @@ convert mockjs into RAP2 import backup JSON
 
 ## Screenshot
 
-Mock2Rap2
 ![](screenshot/mockrap2.gif)
-
-ImportRAP2
-![](screenshot/importRap2.gif)
-
 
 
 ## Example
