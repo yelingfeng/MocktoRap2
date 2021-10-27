@@ -37,3 +37,15 @@ export interface RapPropsType {
   moduleId?: number
   repositoryId?: number
 }
+
+/**
+ * project信息
+ */
+export interface IRapProjectType {
+  // 创建者id
+  creatorId: string
+  // 模块名称
+  moduleId: string
+  // 工程id
+  repositoryId: string
+}

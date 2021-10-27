@@ -17,7 +17,7 @@
               style="font-size: 24px"
               @click="githubAction"
             >
-              <n-icon>
+              <n-icon size="30">
                 <LogoGithub />
               </n-icon>
             </n-button>
@@ -43,7 +43,7 @@
       content-style="padding: 24px;"
       :native-scrollbar="false"
     >
-      <MockRap :req="req" :resp="resp2" />
+      <MockRap :req="req" :resp="resp" />
     </n-layout>
     <!-- </n-layout> -->
   </n-layout>
@@ -180,13 +180,16 @@ export default defineComponent({
         'https://github.com/yelingfeng/MocktoRap2'
       )
     }
-    return { req, resp, resp2, githubAction }
+    return { req, resp, resp2, resp3, githubAction }
   }
 })
 </script>
-<style scoped>
+<style>
 .header {
   padding: 5px;
   text-align: left;
+}
+.n-thing .n-thing-avatar {
+  margin-top: 10px;
 }
 </style>

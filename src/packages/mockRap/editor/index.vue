@@ -5,7 +5,7 @@ import {
   getCurrentInstance,
   onMounted,
   reactive,
-  watch,
+  watch
 } from 'vue'
 export default defineComponent({
   props: {
@@ -13,22 +13,22 @@ export default defineComponent({
     showBtns: [Boolean],
     expandedOnStart: {
       type: Boolean,
-      default: false,
+      default: false
     },
     mode: {
       type: String,
-      default: 'tree',
+      default: 'tree'
     },
     modes: {
       type: Array,
       default: function () {
         return ['tree', 'code', 'form', 'text', 'view']
-      },
+      }
     },
     lang: {
       type: String,
-      default: 'en',
-    },
+      default: 'en'
+    }
   },
   setup(props: any, { emit }) {
     const root = getCurrentInstance()?.root
@@ -42,15 +42,15 @@ export default defineComponent({
       expandedModes: ['tree', 'view', 'form'],
       locale: {
         it: {
-          save: 'SALVA',
+          save: 'SALVA'
         },
         en: {
-          save: 'SAVE',
+          save: 'SAVE'
         },
         zh: {
-          save: '保存',
-        },
-      },
+          save: '保存'
+        }
+      }
     })
     watch(
       () => props.modelValue as unknown as any,
@@ -87,7 +87,7 @@ export default defineComponent({
         },
         onModeChange() {
           expandAll()
-        },
+        }
       }
       state.editor = new window.JSONEditor(
         document.querySelector('.jsoneditor-vue'),
@@ -135,7 +135,7 @@ export default defineComponent({
         </div>
       )
     }
-  },
+  }
 })
 </script>
 <style scoped>

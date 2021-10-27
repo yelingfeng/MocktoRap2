@@ -6,7 +6,11 @@ import {
 } from '../utils'
 import { reduce, random } from 'lodash-es'
 
-import type { RapPropsType, ItfType } from './type'
+import type {
+  RapPropsType,
+  ItfType,
+  IRapProjectType
+} from './type'
 
 // 是否key带规则模式
 const isRuleMode = (keyName: string) => {
@@ -288,7 +292,12 @@ const _transInterfaceJson = ({
   url,
   method,
   bodyOption = 'FORM_DATA',
-  description = ''
+  description = '',
+  creatorId,
+  // 模块名称
+  moduleId,
+  // 工程id
+  repositoryId
 }) => {
   const itf = {
     id: interfaceId,
@@ -311,18 +320,23 @@ const _transInterfaceJson = ({
  * @param reqSource request 源
  * @param respSource resp 源
  * @param icfg 接口信息
+ * @param prject 工程相关参数
  */
 export const transformMock = (
   reqSource: any,
   respSource: any,
-  icfg: ItfType
+  icfg: ItfType,
+  project: IRapProjectType
 ) => {
   const itf = _transInterfaceJson({
     name: icfg.name,
     url: icfg.url,
     method: icfg.method,
     bodyOption: icfg.bodyOption,
-    description: icfg.desc
+    description: icfg.desc,
+    creatorId: project.creatorId,
+    moduleId: project.moduleId,
+    repositoryId: project.repositoryId
   })
   // console.log(reqSource)
   const properties = _transProperties(respSource, reqSource)

@@ -1,9 +1,53 @@
 <template>
   <div class="box">
     <n-grid :cols="24" :x-gap="2" responsive="screen">
+      <n-grid-item :span="24">
+        <div class="toptip">
+          <n-blockquote>
+            <n-text type="success">
+              1.先输入RAP模块id和工程id(创建模块url就有)
+              2.再输入接口相关信息 3.编辑请求和返回json 4
+              .点击转换完成
+            </n-text>
+          </n-blockquote>
+        </div>
+      </n-grid-item>
+    </n-grid>
+    <n-grid :cols="24" :x-gap="2" responsive="screen">
       <n-grid-item :span="8">
         <div class="box-left">
-          <n-card title="接口相关参数">
+          <n-card title="RAP模块参数">
+            <n-form
+              ref="formRefBase"
+              inline
+              :label-width="80"
+              :model="formValueBase"
+            >
+              <n-form-item label="工程ID">
+                <n-input
+                  v-model:value="formValueBase.repositoryId"
+                  maxlength="6"
+                  placeholder="6位数字"
+                />
+              </n-form-item>
+              <n-form-item label="模块id">
+                <n-input
+                  v-model:value="formValueBase.moduleId"
+                  maxlength="6"
+                  placeholder="6位数字"
+                />
+              </n-form-item>
+              <n-form-item label="创建者ID">
+                <n-input
+                  v-model:value="formValueBase.creatorId"
+                  maxlength="6"
+                  placeholder="6位数字"
+                />
+              </n-form-item>
+            </n-form>
+          </n-card>
+          <div class="divider" />
+          <n-card title="RAP接口相关参数">
             <n-form
               ref="formRef"
               :label-width="100"
@@ -48,8 +92,17 @@
             <div
               style="display: flex; justify-content: center"
             >
-              <n-button type="primary" @click="transClick"
-                >转换</n-button
+              <n-button
+                type="success"
+                size="large"
+                @click="transClick"
+              >
+                <template #icon>
+                  <n-icon>
+                    <Rocket />
+                  </n-icon>
+                </template>
+                转换</n-button
               >
             </div>
           </n-card>
@@ -109,17 +162,19 @@ import {
   onMounted
 } from 'vue'
 import { transformMock } from './src/transform'
-import type { ItfType } from './src/type'
+import type { ItfType, IRapProjectType } from './src/type'
 import { isString, cloneDeep } from 'lodash-es'
 import { useMessage } from 'naive-ui'
 import Vue3JsonEditor from './editor/index.vue'
+import { Rocket } from '@vicons/ionicons5'
 type Recordable<T = any> = {
   [x: string]: T
 }
 export default defineComponent({
   name: 'MockRap',
   components: {
-    Vue3JsonEditor
+    Vue3JsonEditor,
+    Rocket
   },
   props: {
     resp: {
@@ -138,11 +193,19 @@ export default defineComponent({
     const jsonData = ref('')
 
     const formRef = ref<any>(null)
+    const formRefBase = ref(null)
+
+    const formValueBase = ref<IRapProjectType>({
+      repositoryId: '292320',
+      creatorId: '161514',
+      moduleId: '482600'
+    })
+
     const message = useMessage()
 
     const edtorProps = reactive({
       jsonResp: {},
-      jsonReq: {},
+      jsonReq: '',
       showBtn: false,
       mode: 'text'
     })
@@ -176,6 +239,14 @@ export default defineComponent({
       {
         label: 'PUT',
         value: 'PUT'
+      },
+      {
+        label: 'OPTIONS',
+        value: 'OPTIONS'
+      },
+      {
+        label: 'PATCH',
+        value: 'PATCH'
       }
     ]
 
@@ -244,7 +315,8 @@ export default defineComponent({
           transData.value = transformMock(
             cloneDeep(reqJson),
             cloneDeep(respJson),
-            intefaceForm.value
+            intefaceForm.value,
+            formValueBase.value
           )
         } else {
           console.log(errors)
@@ -254,6 +326,8 @@ export default defineComponent({
     }
     return {
       formRef,
+      formRefBase,
+      formValueBase,
       rules,
       options,
       jsonData,
@@ -274,10 +348,18 @@ export default defineComponent({
   text-align: left;
 }
 
+.toptip {
+  padding: 0 20px 0 20px;
+}
+
 .box-left,
 .box-center,
 .box-right {
   padding: 20px;
+}
+
+.divider {
+  margin-top: 10px;
 }
 
 .ace-jsoneditor.ace_editor {
