@@ -199,7 +199,7 @@ div.jsoneditor-tree button.jsoneditor-invisible {
 
 div.jsoneditor {
   color: #1A1A1A;
-  border: 1px solid #3883fa;
+  border: 1px solid #18a058;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -743,8 +743,8 @@ div.jsoneditor-menu {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: white;
-  background-color: #3883fa;
-  border-bottom: 1px solid #3883fa;
+  background-color: #18a058;
+  border-bottom: 1px solid #18a058;
 }
 
 div.jsoneditor-menu > button,
